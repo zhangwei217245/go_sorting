@@ -1,0 +1,87 @@
+You are asked to write a data generation and processing pipeline. The pipeline generates data with a certain schema in CSV format and sorts the generated data according to different columns in the schema.
+
+ 
+
+Schema:
+
+-----------------------------------------------------------------------------------
+
+| id (int32) | name (string) | address(string) | Continent (string) |
+
+-----------------------------------------------------------------------------------
+
+id: integer number within 32-bit range
+
+name: names are strings with the English character only, length ranging from 10-15 
+
+address: addresses are strings with a mixture of numbers, characters, and space, length ranging from 15-20
+
+Continent: one value from the following values {“North America”, “Asia”, “South America”, “Europe”, “Africa”, “Australia”}
+
+
+Example:
+
+21,axxxxxxxxx,12 abc dfsf LdUE,Asia
+
+2,bxxxxxxxxy,9282 abc sf LdAUE,Africa
+
+…
+
+
+# 1: You are asked to generate 100 million lines of random CSV data that follow the above criteria and produce it to a Kafka topic called(source). 
+
+
+# 2: You are asked to read the data from the Kafka topic(source) above and sort the data according to id(numerically), name(alphabetically), and continent(alphabetically) respectively, and produce the sorted data to three different topics(id, name, continent).
+
+
+For example, the id topic should look like:
+
+
+2,bxxxxxxxxy,9282 abc sf LdAUE,Africa
+
+21,axxxxxxxxx,12 abc dfsf LdUE,Asia
+
+
+The name topic should look like:
+
+
+21,axxxxxxxxx,12 abc dfsf LdUE,Asia
+
+2,bxxxxxxxxy,9282 abc sf LdAUE,Africa
+
+
+The continent topic should look like:
+
+
+2,bxxxxxxxxy,9282 abc sf LdAUE,Africa
+
+21,axxxxxxxxx,12 abc dfsf LdUE,Asia
+
+
+Requirements:
+
+Implement this in Golang.
+Package the source code, build scripts, start scripts, instructions to run the program(s), and documents in a docker and publish it to the DockerHub. 
+Install any software you need inside the docker yourself.
+Please automate(with shell) as much as possible on building/running the program(s).
+Have detailed instructions on how to run and verify the programming. Try to make it as simple as possible.
+The whole pipeline should run within 2GB of memory and 4 cores. (We will test it with these restrictions.)
+Please write the code as clean as possible with good structure and re-usability. 
+Comment whenever needed for both the code and scripts to start the program. Please also provide some explanation for your algorithms.
+Try to make this whole program(s) as fast as possible. You can do anything(OS parameter tuning, Kafka tuning, etc.) you want as long as it does not take more than 2GB of memory. Please document what optimization you have done.
+Please print out the overall runtime(wall-clock) after the program(s) finishes. If possible, print the breakdowns of the overall runtime as well.
+Please do this yourself and do not share/copy the question/answer on the Internet/forums. We will verify the originality of the solution in the following rounds of interviews.
+Grading criteria: 
+
+Correctness. The program needs to produce the correct output.
+Performance. The faster the better.
+Code cleanness. Treat it as production code with good structure and naming.
+
+Bonus points:
+
+Use the idiomatic Golang programming style.
+Analyze where the major bottlenecks are and explain why.
+Elaborate on what will you do if you have more data and more machines.
+Timeline: 
+
+  You have 9 days to finish this project starting from receiving this email. Turning in the earlier the better. Feel free to send us whatever you have achieved if you don’t have a working solution by the end of the given time.
